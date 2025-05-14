@@ -53,7 +53,7 @@ sudo systemctl enable --now docker
 ### 4. Verify installation
 
 ```bash
-sudo systemctl enable --now docker
+docker --version
 ```
 
 This should output something similar to: 
