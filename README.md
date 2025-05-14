@@ -9,6 +9,7 @@ You may want to have some washing ready to fold while waiting for the image down
 - [Setting up the BIOS](#setting-up-the-bios)
 - [Installing docker](#installing-docker)
 - [Downloading ROCm and pytorch image](#dowloading-rocm-and-pytorch-image)
+- [Managing the docker containers](#managing-the-docker-containers)
 
 ## Introduction
 
@@ -84,6 +85,55 @@ docker run -it \
   --group-add=video \                       # Required for ROCm
   rocm/pytorch:latest \                     # Image to use
   bash                                      # Launch shell
+```
+
+## Managing the docker containers
+
+### Exiting the container
+
+While inside of the container enter: 
+
+```bash
+exit
+```
+
+This will exit the docker container, saving its state and closing it down for reopening later
+
+### Restarting the container
+
+From outside the container in a terminal enter:
+
+```bash
+docker start -ai my_rocm_container # Replace this with the name of your container
+cd /workspace
+```
+
+This opens the container and navigates directly into it's workspace, from there you can navigate into whatever directory the container shares with your main OS
+
+### List all docker containers
+
+This will list any docker containers that you have, running or stopped
+
+```bash
+docker ps -a
+```
+
+### Deleting a docker container
+
+First you should [exit](#exiting-the-container) the container, and [list](#list-all-docker-containers) all containers, then enter:
+
+```bash
+docker rm my_docker_container
+```
+
+Just change the name of the container to the name of your actual container
+
+### Deleting unused images
+
+If you have any images that you downloaded and no longer want to use, as in no containers are based off of that image, to remove it you can enter:
+
+```bash
+docker image prune -a
 ```
 
 
