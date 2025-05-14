@@ -10,6 +10,8 @@ You may want to have some washing ready to fold while waiting for the image down
 - [Installing docker](#installing-docker)
 - [Downloading ROCm and pytorch image](#dowloading-rocm-and-pytorch-image)
 - [Managing the docker containers](#managing-the-docker-containers)
+- [Verifying installation](#verifying-installation)
+- [Test](#test)
 
 ## Introduction
 
@@ -136,7 +138,60 @@ If you have any images that you downloaded and no longer want to use, as in no c
 docker image prune -a
 ```
 
+## Verifying installation
 
+### Verifying ROCm
+
+Inside of your docker enter:
+
+```bash
+rocminfo
+```
+
+If this returns a long detailed response then ROCm is working correctly, if it returns command not found this means ROCm is not working inside your docker
+
+### Verifying pytorch
+
+Inside your docker enter:
+
+```bash
+python3 -c "import torch; print(torch.__version__)"
+```
+
+If pytorch is working it will return something similar to:
+
+```bash
+2.6.0+git45896ac
+```
+
+## Test
+
+### Monitoring ROCm
+
+
+
+### MNIST pytorch example
+
+Inside your docker container navigate to your main folder and enter:
+
+```bash
+git clone https://github.com/pytorch/examples.git
+cd examples/mnist
+python3 main.py
+```
+
+This should then run and generate something ending similar to:
+
+```bash
+...
+Train Epoch: 14 [58240/60000 (97%)]     Loss: 0.010128
+Train Epoch: 14 [58880/60000 (98%)]     Loss: 0.001348
+Train Epoch: 14 [59520/60000 (99%)]     Loss: 0.005261
+
+Test set: Average loss: 0.0252, Accuracy: 9921/10000 (99%)
+```
+
+This means everything is completely fully working for you to start developing using ROCm
 
 ## My Specs and OS
 
