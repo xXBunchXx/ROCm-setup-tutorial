@@ -1,17 +1,20 @@
 # ROCm-setup-tutorial
 
-Welcome to my setup tutorial, everything explained here is how I got ROCm set up on my [device](#my-specs-and-os)
+Welcome to my setup tutorial, everything explained here is how I got ROCm set up on my [device](#my-specs-and-os) 
+You may want to have some washing ready to fold while waiting for the image download
 
 ## Table of Contents
 
 - [Introduction](#introduction)
 - [Setting up the BIOS](#setting-up-the-bios)
+- [Installing docker](#installing-docker)
+- [Downloading ROCm and pytorch image](#dowloading-rocm-and-pytorch-image)
 
 ## Introduction
 
 ### *ALWAYS MAKE A BACKUP OF ANY IMPORTANT DATA BEFORE STARTING*
 
-I performed this on a clean install of Ubuntu 24.04 however this should work on both 24.04 and 22.04 and shouldn't require a fresh install. However, I would recommend if issues arise to use a clean install since this is what worked for me and prevents any data loss.
+I performed this on a clean install of Ubuntu 24.04 however this should work on both 24.04 and 22.04 and shouldn't require a fresh install. However, I would recommend if issues arise to use a clean install since this is what worked for me and should prevent any potential data loss.
 It is possible that this won't work for everyone however this should work with any [gfx1100 gpu](#gfx1100-list) or [gfx1030 gpu](#gfx1030-list). Bear in mind I have only tested this on 7900xtx so your mileage may vary
 
 ## Setting up the BIOS
@@ -56,6 +59,34 @@ This should output something similar to:
 ```bash
 Docker version 26.1.3, build 26.1.3-0ubuntu1~24.04.1+esm1
 ```
+
+Docker should now be set up on your pc and ready to download the image
+
+## Downloading ROCm and pytorch image
+
+### 1. Downloading the image
+
+```bash
+docker pull rocm/pytorch:latest
+```
+
+Go fold your washing and come back when the download has installed.
+
+### 2. Starting the docker container
+
+You can change the name of your container to be what you want it to be, you should also change the path of your folder you want the docker to have access to
+
+```bash
+docker run -it \
+  --name my_rocm_container \                # Name your container
+  -v /home/your_username/Desktop/my_folder:/workspace \  # Mount desktop folder for the container to have access to
+  --device=/dev/kfd --device=/dev/dri \     # GPU access
+  --group-add=video \                       # Required for ROCm
+  rocm/pytorch:latest \                     # Image to use
+  bash                                      # Launch shell
+```
+
+
 
 ## My Specs and OS
 
