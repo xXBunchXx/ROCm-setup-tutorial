@@ -70,7 +70,7 @@ Docker should now be set up on your pc and ready to download the image
 ### 1. Downloading the image
 
 ```bash
-docker pull rocm/pytorch:latest
+sudo docker pull rocm/pytorch:latest
 ```
 
 Go fold your washing and come back when the download has installed.
@@ -80,13 +80,13 @@ Go fold your washing and come back when the download has installed.
 You can change the name of your container to be what you want it to be, you should also change the path of your folder you want the docker to have access to
 
 ```bash
-docker run -it \
-  --name my_rocm_container \                # Name your container
-  -v /home/your_username/Desktop/my_folder:/workspace \  # Mount desktop folder for the container to have access to
-  --device=/dev/kfd --device=/dev/dri \     # GPU access
-  --group-add=video \                       # Required for ROCm
-  rocm/pytorch:latest \                     # Image to use
-  bash                                      # Launch shell
+sudo docker run -it \
+  --name my_rocm_container \
+  -v /home/your_username/Desktop/my_folder:/workspace \
+  --device=/dev/kfd --device=/dev/dri \
+  --group-add=video \
+  rocm/pytorch:latest \
+  bash
 ```
 
 ## Managing the docker containers
