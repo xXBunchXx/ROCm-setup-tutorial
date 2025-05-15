@@ -106,7 +106,7 @@ This will exit the docker container, saving its state and closing it down for re
 From outside the container in a terminal enter:
 
 ```bash
-docker start -ai my_rocm_container # Replace this with the name of your container
+sudo docker start -ai my_rocm_container # Replace this with the name of your container
 cd /workspace
 ```
 
@@ -125,7 +125,7 @@ docker ps -a
 First you should [exit](#exiting-the-container) the container, and [list](#list-all-docker-containers) all containers, then enter:
 
 ```bash
-docker rm my_docker_container
+sudo docker rm my_docker_container
 ```
 
 Just change the name of the container to the name of your actual container
@@ -135,7 +135,7 @@ Just change the name of the container to the name of your actual container
 If you have any images that you downloaded and no longer want to use, as in no containers are based off of that image, to remove it you can enter:
 
 ```bash
-docker image prune -a
+sudo docker image prune -a
 ```
 
 ## Verifying installation
