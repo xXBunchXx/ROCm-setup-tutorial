@@ -1,5 +1,7 @@
 # ROCm-setup-tutorial
 
+If you would prefer the video format I have made one here: https://youtu.be/LSjqYV1jxBo
+
 Welcome to my setup tutorial, everything explained here is how I got ROCm set up on my [device](#my-specs-and-os) 
 You may want to have some washing ready to fold while waiting for the image download
 
